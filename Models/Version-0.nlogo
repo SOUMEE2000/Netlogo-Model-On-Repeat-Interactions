@@ -202,7 +202,7 @@ to add-repeat-interactions
   ]
 
   let count-new  count-link / 2
-  let new-interactions-edges p_seasoned * count-new
+  let new-interactions-edges p_repeat * count-new
 
   repeat new-interactions-edges
   [

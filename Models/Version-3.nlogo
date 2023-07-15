@@ -143,7 +143,7 @@ to add-new-interactions
 
   ]
  ;; print count links
-  ask links [set color black]
+ ;; ask links [set color black]
 end
 
 to add-fresh-interactions
@@ -166,7 +166,7 @@ to add-fresh-interactions
 
   ]
   ;;print count links
-  ask links [set color black]
+  ;;ask links [set color black]
 end
 
 to add-seasoned-interactions
@@ -189,7 +189,7 @@ to add-seasoned-interactions
 
   ]
   ;;print count links
-  ask links [set color black]
+  ;;ask links [set color black]
 end
 
 to add-repeat-interactions
@@ -202,7 +202,7 @@ to add-repeat-interactions
   ]
 
   let count-new  count-link / 2
-  let new-interactions-edges p_seasoned * count-new
+  let new-interactions-edges p_repeat * count-new
 
   repeat new-interactions-edges
   [
@@ -215,16 +215,16 @@ to add-repeat-interactions
 
   ]
   ;;print count links
-  ask links [set color black]
+  ;;ask links [set color black]
 end
 
 ;; report
 
-to-report density
-  let edges  ( count links)
-  let vertices ( count turtles )
-  report ( 2 * edges) / ( vertices * (vertices - 1) )
-end
+;to-report density
+;  let edges  ( count links)
+;  let vertices ( count turtles )
+;  report ( 2 * edges) / ( vertices * (vertices - 1) )
+;end
 
 to-report shortest-dist [node1 node2]
   let dist 0
@@ -269,7 +269,6 @@ to-report Degree-of-Connection
   ]
   report 0
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 308
@@ -324,7 +323,7 @@ num-teams
 num-teams
 0
 100
-4.0
+7.0
 1
 1
 NIL
@@ -339,7 +338,7 @@ num-people
 num-people
 0
 100
-10.0
+4.0
 1
 1
 NIL
@@ -363,17 +362,6 @@ MONITOR
 136
 NIL
 count turtles
-2
-1
-11
-
-MONITOR
-222
-91
-303
-136
-density
-density
 2
 1
 11
@@ -479,7 +467,7 @@ p_repeat
 p_repeat
 0
 1
-0.01
+0.52
 0.01
 1
 NIL
@@ -606,7 +594,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot density"
+"default" 1.0 0 -16777216 true "" ";plot density"
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -954,6 +942,80 @@ NetLogo 6.3.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="30" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="43"/>
+    <metric>Degree-of-Connection</metric>
+    <enumeratedValueSet variable="p_fresh">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p_repeat">
+      <value value="0.52"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="connection-plot?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p_seasoned">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="f_n">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="separation-plot?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="f_c">
+      <value value="0.07"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-teams">
+      <value value="7"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p_new">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-people">
+      <value value="4"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="experiment-2" repetitions="30" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="40"/>
+    <metric>Degree-of-Separation</metric>
+    <enumeratedValueSet variable="p_fresh">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p_repeat">
+      <value value="0.52"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="connection-plot?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p_seasoned">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="f_n">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="separation-plot?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="f_c">
+      <value value="0.07"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-teams">
+      <value value="7"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p_new">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-people">
+      <value value="4"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default

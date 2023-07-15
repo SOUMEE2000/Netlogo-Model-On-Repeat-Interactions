@@ -202,7 +202,7 @@ to add-repeat-interactions
   ]
 
   let count-new  count-link / 2
-  let new-interactions-edges p_seasoned * count-new
+  let new-interactions-edges p_repeat * count-new
 
   repeat new-interactions-edges
   [
@@ -269,24 +269,6 @@ to-report Degree-of-Connection
   ]
   report 0
 end
-
-
-to-report Degree-of-Clustering
-  ifelse clustering-plot?
-  [ report mean [ nw:clustering-coefficient ] of turtles  ]
-  [ report 0 ]
-
-end
-
-to-report global-clustering-coefficient
-  ifelse global-clustering?
-  [
-    let closed-triplets sum [ nw:clustering-coefficient * count my-links * (count my-links - 1) ] of turtles
-    let triplets sum [ count my-links * (count my-links - 1) ] of turtles
-    report closed-triplets / triplets
-  ]
-  [report 0 ]
-end
 @#$#@#$#@
 GRAPHICS-WINDOW
 308
@@ -341,7 +323,7 @@ num-teams
 num-teams
 0
 100
-5.0
+7.0
 1
 1
 NIL
@@ -356,7 +338,7 @@ num-people
 num-people
 0
 100
-10.0
+6.0
 1
 1
 NIL
@@ -404,7 +386,7 @@ f_c
 f_c
 0
 1
-0.3
+0.1
 0.1
 1
 NIL
@@ -418,8 +400,8 @@ SLIDER
 f_n
 f_n
 0
-1
-0.01
+0.1
+0.02
 0.01
 1
 NIL
@@ -450,9 +432,9 @@ SLIDER
 p_new
 p_new
 0
-1
-0.3
-0.05
+0.1
+0.01
+0.01
 1
 NIL
 HORIZONTAL
@@ -465,9 +447,9 @@ SLIDER
 p_fresh
 p_fresh
 0
-1
-0.05
-0.05
+0.1
+0.01
+0.01
 1
 NIL
 HORIZONTAL
@@ -480,9 +462,9 @@ SLIDER
 p_seasoned
 p_seasoned
 0
-1
-0.9
-0.05
+0.1
+0.07
+0.01
 1
 NIL
 HORIZONTAL
@@ -495,9 +477,9 @@ SLIDER
 p_repeat
 p_repeat
 0
-1
-0.5
-0.05
+0.1
+0.01
+0.01
 1
 NIL
 HORIZONTAL
@@ -560,7 +542,7 @@ NIL
 0.0
 10.0
 0.0
-5.0
+10.0
 true
 false
 "" ""
@@ -603,64 +585,6 @@ SWITCH
 406
 connection-plot?
 connection-plot?
-1
-1
--1000
-
-PLOT
-875
-18
-1075
-168
-Clustering
-NIL
-NIL
-0.0
-10.0
-0.0
-0.1
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "plot Degree-of-Clustering"
-
-SWITCH
-877
-174
-1011
-207
-clustering-plot?
-clustering-plot?
-1
-1
--1000
-
-PLOT
-876
-215
-1076
-365
-Global Clustering
-NIL
-NIL
-0.0
-10.0
-0.0
-1.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "plot global-clustering-coefficient"
-
-SWITCH
-878
-372
-1024
-405
-global-clustering?
-global-clustering?
 1
 1
 -1000
@@ -1011,6 +935,44 @@ NetLogo 6.3.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="50" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="50"/>
+    <metric>Degree-of-Separation</metric>
+    <enumeratedValueSet variable="p_fresh">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p_repeat">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="connection-plot?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p_seasoned">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="separation-plot?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="f_n">
+      <value value="0.02"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="f_c">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-teams">
+      <value value="7"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="p_new">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="num-people">
+      <value value="6"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
